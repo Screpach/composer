@@ -1,0 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import { useStudioStore } from '../store/useStudioStore';
+import { audioEngine } from '../audio/audioEngine';
+export function EnteredNotesFooter(){const s=useStudioStore();return <div className='rounded-3xl bg-white/35 p-3'><div className='flex justify-between'><h4>Entered notes</h4><div><button onClick={s.clearEntered}>Clear entered notes</button><button onClick={()=>audioEngine.stopAll()} className='ml-3'>Stop all</button></div></div><div className='flex flex-wrap gap-2 mt-2'><AnimatePresence>{s.enteredNotes.map(n=><motion.span initial={{opacity:0,y:4}} animate={{opacity:1,y:0}} exit={{opacity:0}} key={n.id} className='rounded-full bg-white/60 px-3 py-1 text-xs'>{n.name} step {n.step} {n.frequency.toFixed(2)}Hz</motion.span>)}</AnimatePresence></div></div>}
