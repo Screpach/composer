@@ -1,0 +1,4 @@
+import { useStudioStore } from '../store/useStudioStore';
+import { GlassButton } from './GlassButton';
+const ds=['whole','half','quarter','eighth','sixteenth'] as const;
+export function NotationToolbar(){const s=useStudioStore();return <div className='flex flex-wrap gap-2'>{ds.map(d=><GlassButton key={d} onClick={()=>s.setDuration(d)} className={s.selectedDuration===d?'bg-cyan-200/70':''}>{d}</GlassButton>)}<GlassButton onClick={()=>s.toggle('restMode')}>Rest</GlassButton><GlassButton onClick={()=>s.toggle('dotted')}>Dotted</GlassButton><GlassButton onClick={()=>s.toggle('tied')}>Tie</GlassButton><GlassButton onClick={s.deleteSelected}>Delete</GlassButton><GlassButton onClick={s.undo}>Undo</GlassButton><GlassButton onClick={s.redo}>Redo</GlassButton><GlassButton onClick={s.addMeasure}>Add measure</GlassButton><GlassButton onClick={s.clear}>Clear</GlassButton><GlassButton onClick={s.insertRest}>Insert Rest</GlassButton></div>}
